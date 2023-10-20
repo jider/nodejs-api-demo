@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "name": "bulbasaur",
+    "url": "https://pokeapi.co/api/v2/pokemon/1/",
+    "base_experience": 64,
+    "height": 7,
+    "weight": 69,
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "ivysaur",
+    "url": "https://pokeapi.co/api/v2/pokemon/2/",
+    "base_experience": 142,
+    "height": 10,
+    "weight": 130,
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "venusaur",
+    "url": "https://pokeapi.co/api/v2/pokemon/3/",
+    "base_experience": 263,
+    "height": 20,
+    "weight": 1000,
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "charmander",
+    "url": "https://pokeapi.co/api/v2/pokemon/4/",
+    "base_experience": 62,
+    "height": 6,
+    "weight": 85,
+    "types": [
+      "fire"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "squirtle",
+    "url": "https://pokeapi.co/api/v2/pokemon/7/",
+    "base_experience": 63,
+    "height": 5,
+    "weight": 90,
+    "types": [
+      "water"
+    ]
+  }
+]

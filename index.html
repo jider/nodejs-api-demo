@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Pokemons API demo</title>
+    <style>
+      :root {
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        box-sizing: border-box;
+        display: grid;
+        font-size: 1.6rem;
+        height: 100vh;
+        place-content: center;
+      }
+
+      ul {
+        border: 2px solid #ccc;
+        list-style: none;
+        padding: 1rem;
+
+        > li {
+          display: flex;
+          gap: 1rem;
+          justify-content: space-between;
+          padding-block: 1rem;
+
+          > button {
+            padding-inline: 1rem;
+          }
+        }
+
+        > li:not(:last-child) {
+          border-bottom: 1px solid #ccc;
+        }
+      }
+    </style>
+    <script>
+      const API_URL = 'http://localhost:1234/pokemons'
+
+      fetch(API_URL)
+        .then(response => {
+          if (!response.ok) return null
+          return response.json()
+        })
+        .then(data => {
+          const html = data.map(pokemon => `
+                <li data-id="${ pokemon.id }">
+                    ${ pokemon.name }: ${ pokemon.types.join(', ') }
+                    <button>X</button>
+                </li>
+            `).join('')
+
+          document.getElementById('pokemonsList').innerHTML = html
+          document.addEventListener('click', (e) => {
+            if (e.target.matches('button')) {
+              const item = e.target.parentNode
+              const { id } = item.dataset
+
+              fetch(`${ API_URL }/${ id }`, { method: 'DELETE' })
+                .then(response => {
+                  if (!response.ok) console.log('There was an error during the request')
+                  item.remove()
+                })
+                .catch(error => {
+                  console.log(error.message)
+                })
+            }
+          })
+        })
+        .catch(error => console.log(error.message ?? 'There was an error retrieving pokemons data!'))
+    </script>
+</head>
+<body>
+<main>
+    <ul id="pokemonsList"></ul>
+</main>
+</body>
+</html>
