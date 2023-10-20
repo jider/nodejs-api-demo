@@ -60,14 +60,13 @@
           return response.json()
         })
         .then(data => {
-          const html = data.map(pokemon => `
-                <li data-id="${ pokemon.id }">
-                    ${ pokemon.name }: ${ pokemon.types.join(', ') }
-                    <button>X</button>
-                </li>
-            `).join('')
+          document.getElementById('pokemonsList').innerHTML = data.map(pokemon => `
+            <li data-id="${ pokemon.id }">
+                ${ pokemon.name }: ${ pokemon.types.join(', ') }
+                <button>X</button>
+            </li>
+          `).join('')
 
-          document.getElementById('pokemonsList').innerHTML = html
           document.addEventListener('click', (e) => {
             if (e.target.matches('button')) {
               const item = e.target.parentNode
